@@ -11,7 +11,6 @@ Este sistema permite o gerenciamento completo de uma estrutura acadêmica, ofere
 - Cadastro e gerenciamento de Matérias
 - Cadastro e gerenciamento de Professores
 - Dashboard com estatísticas e informações importantes
-- Relatórios exportáveis
 
 ## Tecnologias Utilizadas
 
