@@ -29,12 +29,3 @@ Para começar a usar o sistema, siga os passos abaixo:
 4. Abra o Console do Gerenciador de Pacotes (Package Manager Console)
 5. Execute o comando `Update-Database` para criar o banco de dados
 6. Execute o projeto
-
-## Screenshots
-
-![Dashboard](screenshots/dashboard.png)
-*(Substitua o caminho da imagem quando disponível)*
-
-## Contribuição
-
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
