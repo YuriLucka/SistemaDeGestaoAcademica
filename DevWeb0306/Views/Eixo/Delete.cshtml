@@ -1,0 +1,62 @@
+﻿@model DevWeb0306.Models.Eixo
+@{
+    ViewData["Title"] = "Excluir Eixo";
+}
+<div class="page-header">
+    <h1>Excluir Eixo</h1>
+    <p class="page-subtitle">Tem certeza que deseja excluir este eixo?</p>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle"></i> Esta ação não poderá ser desfeita.
+        </div>
+
+        <div class="eixo-info mb-4">
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Nome)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
+@* 
+                @if (!string.IsNullOrEmpty(Model.Descricao))
+                {
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Descricao)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Descricao)
+                    </dd>
+                }
+ *@
+@*                 @if (Model.Cursos != null && Model.Cursos.Any())
+                {
+                    <dt class="col-sm-3">
+                        Cursos Associados
+                    </dt>
+                    <dd class="col-sm-9">
+                        <div class="alert alert-danger">
+                            <strong>Atenção!</strong> Este eixo possui @Model.Cursos.Count cursos associados.
+                            A exclusão deste eixo pode afetar esses cursos.
+                        </div>
+                    </dd>
+                } *@
+            </dl>
+        </div>
+
+        <form asp-action="Delete" class="mt-4">
+            <input type="hidden" asp-for="Id" />
+            <div class="d-flex justify-content-between">
+                <a asp-action="Index" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Voltar
+                </a>
+                <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-trash"></i> Confirmar Exclusão
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

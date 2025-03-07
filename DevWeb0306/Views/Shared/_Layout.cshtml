@@ -1,0 +1,513 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Sistema de Gestão Acadêmica</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #7209b7;
+            --background-color: #6c757d;
+            --text-color: #2b2d42;
+            --light-gray: #e9ecef;
+            --dark-gray: #6c757d;
+            --success-color: #2ecc71;
+            --danger-color: #e63946;
+            --warning-color: #ff9f1c;
+            --info-color: #4cc9f0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Roboto', 'Segoe UI', Helvetica, Arial, sans-serif;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: white;
+            box-shadow: var(--shadow);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            color: var(--primary-color) !important;
+            font-size: 1.6rem;
+            transition: var(--transition);
+            letter-spacing: -0.5px;
+        }
+
+            .navbar-brand:hover {
+                color: var(--secondary-color) !important;
+            }
+
+        .navbar-nav .nav-item {
+            margin: 0 7px;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-color) !important;
+            font-weight: 500;
+            position: relative;
+            padding: 10px 16px;
+            transition: var(--transition);
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: var(--primary-color) !important;
+                background-color: rgba(67, 97, 238, 0.08);
+            }
+
+            .navbar-nav .nav-link.active {
+                color: var(--primary-color) !important;
+                background-color: rgba(67, 97, 238, 0.12);
+                font-weight: 600;
+            }
+
+        /* Container e Content */
+        .container {
+            padding: 30px 20px;
+        }
+
+        main {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            min-height: 75vh;
+        }
+
+        /* Page Headers */
+        .page-header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--light-gray);
+            padding-bottom: 15px;
+        }
+
+            .page-header h1 {
+                font-weight: 700;
+                color: var(--secondary-color);
+                font-size: 1.8rem;
+                margin-bottom: 0;
+            }
+
+        .page-subtitle {
+            color: var(--dark-gray);
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        /* Buttons */
+        .btn {
+            border-radius: 6px;
+            font-weight: 500;
+            padding: 9px 18px;
+            transition: var(--transition);
+            text-transform: none;
+            letter-spacing: 0.3px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+            .btn-primary:hover {
+                background-color: var(--secondary-color);
+                border-color: var(--secondary-color);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            border-color: var(--danger-color);
+        }
+
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+            .btn-outline-primary:hover {
+                background-color: var(--primary-color);
+                color: white;
+            }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+
+        .btn-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .btn-icon i {
+                margin-right: 6px;
+            }
+
+        /* Tables */
+        .table-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 0;
+        }
+
+            table th {
+                background-color: rgba(67, 97, 238, 0.08);
+                color: var(--secondary-color);
+                font-weight: 600;
+                padding: 14px 16px;
+                text-align: left;
+                border-bottom: 2px solid rgba(67, 97, 238, 0.2);
+                font-size: 0.95rem;
+            }
+
+            table td {
+                padding: 14px 16px;
+                border-bottom: 1px solid var(--light-gray);
+                vertical-align: middle;
+                font-size: 0.95rem;
+            }
+
+            table tr:last-child td {
+                border-bottom: none;
+            }
+
+            table tr:hover {
+                background-color: rgba(67, 97, 238, 0.03);
+            }
+
+        .table-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        /* Forms */
+        .form-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-control {
+            border-radius: 6px;
+            padding: 12px 16px;
+            border: 1px solid #dee2e6;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+            .form-control:focus {
+                border-color: var(--primary-color);
+                box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
+            }
+
+        .form-label {
+            font-weight: 500;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .form-text {
+            color: var(--dark-gray);
+            font-size: 0.85rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Cards */
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+            .card:hover {
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+                transform: translateY(-3px);
+            }
+
+        .card-header {
+            background-color: white;
+            border-bottom: 1px solid var(--light-gray);
+            font-weight: 600;
+            padding: 16px 20px;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* Stats Cards */
+        .stats-card {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .stats-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+            .stats-icon.primary {
+                background-color: var(--primary-color);
+            }
+
+            .stats-icon.secondary {
+                background-color: var(--secondary-color);
+            }
+
+            .stats-icon.success {
+                background-color: var(--success-color);
+            }
+
+            .stats-icon.warning {
+                background-color: var(--warning-color);
+            }
+
+        .stats-details h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            line-height: 1;
+        }
+
+        .stats-details p {
+            margin-bottom: 0;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Badges */
+        .badge {
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+
+        .badge-primary {
+            background-color: rgba(67, 97, 238, 0.15);
+            color: var(--primary-color);
+        }
+
+        .badge-success {
+            background-color: rgba(46, 204, 113, 0.15);
+            color: var(--success-color);
+        }
+
+        .badge-warning {
+            background-color: rgba(255, 159, 28, 0.15);
+            color: #e76f51;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: white;
+            border-top: 1px solid var(--light-gray);
+            padding: 25px 0;
+            color: var(--dark-gray);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+            .footer a {
+                color: var(--primary-color);
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+                .footer a:hover {
+                    text-decoration: underline;
+                }
+
+        /* Responsividade */
+        @@media (max-width: 768px) {
+            .navbar-nav {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid var(--light-gray);
+            }
+
+                .navbar-nav .nav-item {
+                    margin: 5px 0;
+                }
+
+            main {
+                padding: 20px;
+            }
+
+            .stats-card {
+                margin-bottom: 20px;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 700px;
+            }
+        }
+
+        /* Utilities */
+        .mb-4 {
+            margin-bottom: 1.5rem !important;
+        }
+
+        .mt-4 {
+            margin-top: 1.5rem !important;
+        }
+
+        .text-end {
+            text-align: right !important;
+        }
+
+        .d-flex {
+            display: flex !important;
+        }
+
+        .justify-content-between {
+            justify-content: space-between !important;
+        }
+
+        .align-items-center {
+            align-items: center !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-stack"></i> GestãoAcad
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-house-door"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Eixo" asp-action="Index">
+                                <i class="bi bi-diagram-3"></i> Eixos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Curso" asp-action="Index">
+                                <i class="bi bi-journal-bookmark"></i> Cursos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Materia" asp-action="Index">
+                                <i class="bi bi-book"></i> Matérias
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Professor" asp-action="Index">
+                                <i class="bi bi-person-badge"></i> Professores
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="bi bi-person-circle"></i> Minha Conta
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md-6 text-md-start text-center mb-2 mb-md-0">
+                    <span class="text-dark-gray">&copy; @DateTime.Now.Year - <strong>Sistema de Gestão Acadêmica</strong></span>
+                </div>
+                <div class="col-md-6 text-md-end text-center">
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy" class="me-3">
+                        <i class="bi bi-shield-check"></i> Privacidade
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

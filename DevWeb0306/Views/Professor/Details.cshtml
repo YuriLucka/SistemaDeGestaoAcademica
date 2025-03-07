@@ -1,0 +1,37 @@
+﻿@model DevWeb0306.Models.Professor
+@{
+    ViewData["Title"] = "Detalhes do Professor";
+}
+<div class="page-header">
+    <h1>Detalhes do Professor</h1>
+    <p class="page-subtitle">Informações completas do professor</p>
+</div>
+<div class="card">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Cpf)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Cpf)
+            </dd>
+        </dl>
+ 
+        <div class="d-flex justify-content-between mt-4">
+            <a asp-action="Index" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Voltar
+            </a>
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-primary">
+                    <i class="bi bi-pencil"></i> Editar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

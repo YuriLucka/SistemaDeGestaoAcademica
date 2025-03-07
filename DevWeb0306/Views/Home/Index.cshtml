@@ -1,0 +1,165 @@
+﻿@model IEnumerable<Curso>
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="page-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1>Dashboard</h1>
+        <p class="page-subtitle">Bem-vindo ao Sistema de Gestão Acadêmica</p>
+    </div>
+    <div>
+        <button class="btn btn-primary">
+            <i class="bi bi-file-earmark-arrow-down"></i> Exportar Relatório
+        </button>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="stats-card">
+                <div class="stats-icon primary">
+                    <i class="bi bi-diagram-3"></i>
+                </div>
+                <div class="stats-details">
+                    <h3>@ViewBag.TotalEixos</h3>
+                    <p>Eixos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="stats-card">
+                <div class="stats-icon secondary">
+                    <i class="bi bi-journal-bookmark"></i>
+                </div>
+                <div class="stats-details">
+                    <h3>@ViewBag.TotalCursos</h3>
+                    <p>Cursos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="stats-card">
+                <div class="stats-icon success">
+                    <i class="bi bi-book"></i>
+                </div>
+                <div class="stats-details">
+                    <h3>@ViewBag.TotalMaterias</h3>
+                    <p>Matérias</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="stats-card">
+                <div class="stats-icon warning">
+                    <i class="bi bi-person-badge"></i>
+                </div>
+                <div class="stats-details">
+                    <h3>@ViewBag.TotalProfessores</h3>
+                    <p>Professores</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                Últimos Cursos Cadastrados
+            </div>
+            <div class="card-body p-0">
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome do Curso</th>
+                                <th>Eixo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                @foreach (var curso in Model)
+                                {
+                                    <tr>
+                                        <td>@curso.Nome</td>
+                                        <td>@curso.Eixo.Nome</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4" class="text-center">Nenhum curso cadastrado</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                Atividades Recentes
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="bi bi-plus-circle text-success"></i>
+                            <span class="ms-2">Novo Professor cadastrado</span>
+                            <small class="d-block text-muted">@ViewBag.UltimoProfessor</small>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="bi bi-pencil text-primary"></i>
+                            <span class="ms-2">Novo Curso cadastrado</span>
+                            <small class="d-block text-muted">@ViewBag.UltimoCurso</small>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="bi bi-plus-circle text-success"></i>
+                            <span class="ms-2">Nova matéria cadastrada</span>
+                            <small class="d-block text-muted">@ViewBag.UltimaMateria</small>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Acesso Rápido
+            </div>
+            <div class="card-body">
+                <div class="d-flex gap-2 row align-items-start justify-content-start ">
+                    <a asp-controller="Eixo" asp-action="Create" class="btn btn-outline-primary text-start">
+                        <i class="bi bi-plus-circle"></i> Novo Eixo
+                    </a>
+                    <a asp-controller="Curso" asp-action="Create" class="btn btn-outline-primary text-start">
+                        <i class="bi bi-plus-circle"></i> Novo Curso
+                    </a>
+                    <a asp-controller="Materia" asp-action="Create" class="btn btn-outline-primary text-start">
+                        <i class="bi bi-plus-circle"></i> Nova Matéria
+                    </a>
+                    <a asp-controller="Professor" asp-action="Create" class="btn btn-outline-primary text-start">
+                        <i class="bi bi-plus-circle"></i> Novo Professor
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
